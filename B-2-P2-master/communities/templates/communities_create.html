@@ -1,0 +1,35 @@
+{% extends "base_community.html" %}
+{% load static %}
+
+{% block css %}
+{% endblock %}
+
+{% block javascript %}
+<script defer src="{% static '/js/text-control-question.js' %}" type="text/javascript"></script>
+<script async src="{% static '/js/textarea-control.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+<main style="width: 100%; padding: 20px 10px;">
+    <h1> Create a community </h1>
+    <form method="POST">
+        {% csrf_token %}
+
+        <h2> Community Name </h2>
+        {{form.community_name}}
+
+        <h2> Category </h2>
+        {{form.category}}
+
+        <h2> Description </h2>
+        {{form.description}}
+
+        <div style="display: flex; flex-direction:row;gap: 10px; margin: 10px 0;">
+            <a href="{% url 'communities_list' %}" style="text-align:center" class="a button button-danger" type="button">
+                Cancel
+            </a>
+            <button class="button button-primary" type="submit"> Submit </button>
+        </div>
+    </form>
+</main>
+{% endblock %}

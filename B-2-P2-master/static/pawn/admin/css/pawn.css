@@ -1,0 +1,192 @@
+.pawn {
+  display: inline-block
+}
+.pawn .pawn-editor,
+.pawn .pawn-preview {
+  margin-left: 0;
+  width: 610px
+}
+.pawn .pawn-preview {
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 100%;
+  font-size: 1em;
+  line-height: 1.5em
+}
+.pawn .pawn-preview * {
+  line-height: 1.5
+}
+.pawn .pawn-preview a {
+  color: #5b80b2;
+  text-decoration: underline
+}
+.pawn .pawn-preview a:visited {
+  color: #0b0080
+}
+.pawn .pawn-preview a:hover {
+  color: #0645ad
+}
+.pawn .pawn-preview a:active {
+  color: #faa700
+}
+.pawn .pawn-preview a:focus {
+  outline: thin dotted
+}
+.pawn .pawn-preview a:active,
+.pawn .pawn-preview a:hover {
+  outline: 0
+}
+.pawn .pawn-preview p {
+  margin: 1em 0;
+  padding: 0;
+  font-size: 14px
+}
+.pawn .pawn-preview img {
+  max-width: 100%
+}
+.pawn .pawn-preview h1,
+.pawn .pawn-preview h2,
+.pawn .pawn-preview h3,
+.pawn .pawn-preview h4,
+.pawn .pawn-preview h5,
+.pawn .pawn-preview h6 {
+  font-weight: 400;
+  color: #111;
+  margin-top: .75em;
+  margin-bottom: .75em;
+  padding: 0;
+  background: 0 0
+}
+.pawn .pawn-preview h4,
+.pawn .pawn-preview h5,
+.pawn .pawn-preview h6 {
+  font-weight: 700
+}
+.pawn .pawn-preview h1 {
+  font-size: 2.5em
+}
+.pawn .pawn-preview h2 {
+  font-size: 2em
+}
+.pawn .pawn-preview h3 {
+  font-size: 1.5em
+}
+.pawn .pawn-preview h4 {
+  font-size: 1.2em
+}
+.pawn .pawn-preview h5 {
+  font-size: 1em
+}
+.pawn .pawn-preview h6 {
+  font-size: .9em
+}
+.pawn .pawn-preview blockquote {
+  color: #666;
+  margin: 0;
+  padding-left: 1.5em;
+  border-left: .5em #eee solid
+}
+.pawn .pawn-preview hr {
+  display: block;
+  height: 0;
+  border: 0;
+  font-style: italic;
+  border-bottom: 1px solid #ccc;
+  margin: 20px 0;
+  padding: 0
+}
+.pawn .pawn-preview code,
+.pawn .pawn-preview kbd,
+.pawn .pawn-preview pre,
+.pawn .pawn-preview samp {
+  font-family: monospace,monospace;
+  font-size: 14px
+}
+.pawn .pawn-preview code,
+.pawn .pawn-preview pre {
+  margin: 0 2px;
+  padding: 0 5px;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  border-radius: 2px;
+  color: #444
+}
+.pawn .pawn-preview pre {
+  margin: 1.5em 0 1.5em 0;
+  padding: 1em;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word
+}
+.pawn .pawn-preview pre code {
+  margin: 0;
+  padding: 0;
+  background: 0 0;
+  border: none
+}
+.pawn .pawn-preview b,
+.pawn .pawn-preview strong {
+  font-weight: 700
+}
+.pawn .pawn-preview dfn {
+  font-style: italic
+}
+.pawn .pawn-preview ins {
+  background: #ff9;
+  color: #000;
+  text-decoration: none
+}
+.pawn .pawn-preview mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: 700
+}
+.pawn .pawn-preview sub,
+.pawn .pawn-preview sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline
+}
+.pawn .pawn-preview sup {
+  top: -.5em
+}
+.pawn .pawn-preview sub {
+  bottom: -.25em
+}
+.pawn .pawn-preview ol,
+.pawn .pawn-preview ul {
+  margin: 1em 0!important;
+  padding: 0 0 0 2em!important
+}
+.pawn .pawn-preview ol li,
+.pawn .pawn-preview ul li {
+  font-size: 14px!important;
+  margin-bottom: .75em
+}
+.pawn .pawn-preview li p:last-child {
+  margin: 0
+}
+.pawn .pawn-preview dd {
+  margin: 0 0 0 2em
+}
+.pawn .pawn-preview img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle
+}
+.pawn .pawn-preview table {
+  border-collapse: collapse;
+  border-spacing: 0
+}
+.pawn .pawn-preview th {
+  background: 0 0;
+  background: #f8f8f8;
+  font-size: 14px
+}
+.pawn .pawn-preview td {
+  vertical-align: top;
+  font-size: 14px
+}

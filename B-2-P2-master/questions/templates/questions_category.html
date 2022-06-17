@@ -1,0 +1,170 @@
+{% extends "base_tags.html" %}
+{% load static %}
+
+{% block css %}
+{% endblock %}
+
+{% block javascript %}
+<script async src="{% static '/js/bookmark.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+<main class="main" style="width: 100%; padding: 20px 10px;">
+    <h1> Category: {{category}} </h1>
+    <div class="list infinite-container">
+        {% for question in questions%}
+        <div class="card infinite-item">
+            <div class="card-header">
+                <div class="card-header-item">
+                    <div class="card-header-item-group">
+                        <a href="{% url 'users_detail' pk=question.user.profile.pk username=question.user.username%}">
+                            <img width="32px" height="32px" src={{question.user.profile.image.url}} />
+                        </a>
+                        <div>
+                            <div class="item-name">
+                                {% ifequal question.noc "community"%}
+                                <div>
+                                    From
+                                    <strong>
+                                        <a class="a"
+                                            href="{% url 'communities_detail' pk=question.community.pk slug=question.community.slug%}">
+                                            {{question.community.community_name}}
+                                        </a>
+                                    </strong>
+                                    by
+                                    <strong>
+                                        <a class="a"
+                                            href="{% url 'users_detail' pk=question.user.profile.pk username=question.user.username%}">
+                                            {{question.user.username}}
+                                        </a>
+                                    </strong>
+                                </div>
+                                {% else %}
+                                <a class="a"
+                                    href="{% url 'users_detail' pk=question.user.profile.pk username=question.user.username%}">
+                                    {{question.user.username}}
+                                </a>
+                                {% endifequal %}
+                            </div>
+                            <div class="item-date">
+                                {{question.get_time_delta}} {% if question.edited %}(edited){%endif%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <a class="a" href="{% url 'questions_detail' pk=question.pk slug=question.slug %}">
+                    <div class="card-body-title">
+                        {% if question.solved %}[STAR] {%endif%}{{question.title}}
+                    </div>
+                </a>
+                <div class="card-body-summary">
+                    {{question.summary|truncatewords:50}}
+                </div>
+                <div class="card-body-tags">
+                    <a href="{% url 'questions_category' category=question.category%}" class="a tags-category">
+                        {{question.get_category_display}} </a>
+                    {% for tag in question.tags.all %}
+                    <a class="a" href="{% url 'questions_tag' tag=tag%}"> {{tag}} </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="card-footer-item">
+                    <div class="card-footer-item-group">
+                        <div class="card-footer-item-group-detail">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fd702e"
+                                class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                <path
+                                    d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                            </svg>
+                            <div>
+                                {{question.viewed.all.count}}
+                            </div>
+                        </div>
+                        <div class="card-footer-item-group-detail">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fd702e"
+                                class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z" />
+                            </svg>
+                            <div>
+                                {{question.thumbsup.all.count}}
+                            </div>
+                        </div>
+                        <div class="card-footer-item-group-detail">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fd702e"
+                                class="bi bi-chat-square-text" viewBox="0 0 16 16">
+                                <path
+                                    d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                <path
+                                    d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+                            </svg>
+                            <div>
+                                {{question.questioncomment_set.all.count}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer-item">
+                    <div class="card-footer-item-group">
+                        <form id="{{question.id}}" method="POST"
+                            action="{% url 'questions_detail_bookmark' pk=question.pk slug=question.slug%}">
+                            {% csrf_token %}
+                            <button style="padding: 0; margin-right: 15px;"
+                                class="question_detail_bookmark_button button" type="submit">
+                                {% if user in question.bookmark.all%}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fd702e"
+                                    class="bi {{question.pk}}-bi-bookmark-check-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                </svg>
+                                <svg style="display: none;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="#fd702e" class="bi {{question.pk}}-bi-bookmark" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                                </svg>
+                                {% else %}
+                                <svg style="display: none;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="#fd702e" class="bi {{question.pk}}-bi-bookmark-check-fill"
+                                    viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fd702e"
+                                    class="bi {{question.pk}}-bi-bookmark" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                                </svg>
+                                {% endif %}
+                            </button>
+                        </form>
+
+                        <button style="padding: 0;" class="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fd702e"
+                                class="bi bi-share-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if questions.has_next %}
+    <div style="text-align: center;">
+        <a class="infinite-more-link button button-primary" href="?page={{ questions.next_page_number }}">Load More</a>
+    </div>
+    {% endif %}
+
+    <div class="loading" style="display: none;">
+        Loading...
+    </div>
+
+</main>
+{% endblock %}

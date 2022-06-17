@@ -1,0 +1,77 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.container {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+    margin: 40px auto;
+    border: 1px solid #dee0e1;
+}
+
+li,
+ul,
+ol {
+    list-style-type: none;
+}
+
+a {
+    color: black;
+}
+
+button {
+    border: none;
+    outline: none;
+    padding: 8px 15px;
+}
+
+.primaryAction, .button-primary {
+    padding: 8px 15px;
+    background-color: #fd702e;
+    outline: none;
+    border: none;
+}
+
+input {
+    width: 100%;
+    padding: 10px 15px;
+}
+
+#id_remember {
+    width: auto;
+}
+
+.login-or {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.socialaccount_provider {
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #dee0e1;
+    border-radius: 3px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.socialaccount_provider:hover {
+    background-color: #dee0e1;
+}
+
+.form-item {
+    margin: 10px;
+}
